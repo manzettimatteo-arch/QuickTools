@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generatore QR Code – QuickTools</title>
+  <meta name="description" content="Genera QR Code personalizzati direttamente dal browser.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+
+<header>
+  <h1>Generatore QR Code</h1>
+  <p>Crea QR Code personalizzati</p>
+</header>
+
+<div class="ad ad-top">SPAZIO PUBBLICITARIO 728x90</div>
+
+<main class="tool-container">
+
+  <div class="tool-box">
+
+    <input type="text" id="text" placeholder="Inserisci testo o URL">
+
+    <button id="generate">Genera QR</button>
+
+    <div id="qrcode" style="margin-top: 20px;"></div>
+
+  </div>
+
+</main>
+
+<div class="ad ad-bottom">SPAZIO PUBBLICITARIO 728x90</div>
+
+<footer>
+  <p>© <span id="year"></span> QuickTools</p>
+</footer>
+
+<script src="qrcode.min.js"></script>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+document.getElementById("generate").addEventListener("click", () => {
+  const text = document.getElementById("text").value;
+
+  if (!text.trim()) {
+    alert("Inserisci un testo o un URL.");
+    return;
+  }
+
+  document.getElementById("qrcode").innerHTML = "";
+
+  new QRCode(document.getElementById("qrcode"), {
+    text: text,
+    width: 200,
+    height: 200
+  });
+});
+</script>
+
+</body>
+</html>
