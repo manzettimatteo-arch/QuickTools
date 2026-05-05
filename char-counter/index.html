@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conteggio Caratteri – QuickTools</title>
+  <meta name="description" content="Conta caratteri, parole e righe in tempo reale.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+
+<header>
+  <h1>Conteggio Caratteri</h1>
+  <p>Conta caratteri, parole e righe</p>
+</header>
+
+<div class="ad ad-top">SPAZIO PUBBLICITARIO 728x90</div>
+
+<main class="tool-container">
+
+  <div class="tool-box">
+
+    <textarea id="text" rows="6" placeholder="Scrivi qui..."></textarea>
+
+    <div class="result" id="stats">
+      Caratteri: 0 • Parole: 0 • Righe: 1
+    </div>
+
+  </div>
+
+</main>
+
+<div class="ad ad-bottom">SPAZIO PUBBLICITARIO 728x90</div>
+
+<footer>
+  <p>© <span id="year"></span> QuickTools</p>
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+const text = document.getElementById("text");
+const stats = document.getElementById("stats");
+
+text.addEventListener("input", () => {
+  const t = text.value;
+  const chars = t.length;
+  const words = t.trim().split(/\s+/).filter(w => w.length > 0).length;
+  const lines = t.split(/\n/).length;
+
+  stats.textContent = `Caratteri: ${chars} • Parole: ${words} • Righe: ${lines}`;
+});
+</script>
+
+</body>
+</html>
