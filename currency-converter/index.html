@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Convertitore Valuta – QuickTools</title>
+  <meta name="description" content="Convertitore EUR ⇄ USD con tassi dimostrativi.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+
+<header>
+  <h1>Convertitore Valuta</h1>
+  <p>EUR ⇄ USD (tassi dimostrativi)</p>
+</header>
+
+<div class="ad ad-top">SPAZIO PUBBLICITARIO 728x90</div>
+
+<main class="tool-container">
+
+  <div class="tool-box">
+
+    <input type="number" id="amount" placeholder="Importo">
+
+    <select id="from">
+      <option value="EUR">EUR</option>
+      <option value="USD">USD</option>
+    </select>
+
+    <select id="to">
+      <option value="USD">USD</option>
+      <option value="EUR">EUR</option>
+    </select>
+
+    <button id="convert">Converti</button>
+
+    <div class="result" id="out">Risultato: —</div>
+
+  </div>
+
+</main>
+
+<div class="ad ad-bottom">SPAZIO PUBBLICITARIO 728x90</div>
+
+<footer>
+  <p>© <span id="year"></span> QuickTools</p>
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+document.getElementById("convert").addEventListener("click", () => {
+  const amount = parseFloat(document.getElementById("amount").value);
+  const from = document.getElementById("from").value;
+  const to = document.getElementById("to").value;
+  const out = document.getElementById("out");
+
+  if (isNaN(amount)) {
+    out.textContent = "Risultato: inserisci un importo valido.";
+    return;
+  }
+
+  const rate = 1.08; // tasso dimostrativo
+
+  let result = amount;
+
+  if (from === "EUR" && to === "USD") result = amount * rate;
+  if (from === "USD" && to === "EUR") result = amount / rate;
+
+  out.textContent = "Risultato: " + result.toFixed(2) + " " + to;
+});
+</script>
+
+</body>
+</html>
