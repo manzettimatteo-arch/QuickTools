@@ -1,1 +1,73 @@
+:root {
+  --bg: #ffffff;
+  --text: #111;
+  --card: #f3f3f3;
+  --border: #ddd;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a;
+    --text: #e5e7eb;
+    --card: #1e293b;
+    --border: #334155;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+header {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.tool-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 1rem;
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--text);
+  text-align: center;
+  transition: 0.2s;
+}
+
+.tool-card:hover {
+  transform: translateY(-4px);
+}
+
+.tool-card img {
+  width: 48px;
+  margin-bottom: 0.5rem;
+}
+
+.ad {
+  text-align: center;
+  padding: 1rem;
+  margin: 1rem auto;
+  border: 1px dashed var(--border);
+  max-width: 900px;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  opacity: 0.7;
+}
 
