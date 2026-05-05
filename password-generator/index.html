@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generatore Password – QuickTools</title>
+  <meta name="description" content="Generatore di password sicure e casuali. Scegli lunghezza e caratteri.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+
+<header>
+  <h1>Generatore Password</h1>
+  <p>Crea password sicure e casuali</p>
+</header>
+
+<div class="ad ad-top">SPAZIO PUBBLICITARIO 728x90</div>
+
+<main class="tool-container">
+
+  <div class="tool-box">
+
+    <label>Lunghezza:</label>
+    <input type="number" id="len" min="6" max="64" value="12">
+
+    <label><input type="checkbox" id="lower" checked> Lettere minuscole</label>
+    <label><input type="checkbox" id="upper" checked> Lettere maiuscole</label>
+    <label><input type="checkbox" id="num" checked> Numeri</label>
+    <label><input type="checkbox" id="sym"> Simboli</label>
+
+    <button id="gen">Genera</button>
+
+    <div class="result">
+      <input type="text" id="pwd" readonly>
+      <button id="copy">Copia</button>
+    </div>
+
+  </div>
+
+</main>
+
+<div class="ad ad-bottom">SPAZIO PUBBLICITARIO 728x90</div>
+
+<footer>
+  <p>© <span id="year"></span> QuickTools</p>
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+function generate(len, lower, upper, num, sym) {
+  const L = "abcdefghijklmnopqrstuvwxyz";
+  const U = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const N = "0123456789";
+  const S = "!@#$%^&*()_+-=[]{};:,.<>?";
+
+  let chars = "";
+  if (lower) chars += L;
+  if (upper) chars += U;
+  if (num) chars += N;
+  if (sym) chars += S;
+
+  if (!chars) return "";
+
+  let pwd = "";
+  for (let i = 0; i < len; i++) {
+    pwd += chars[Math.floor(Math.random() * chars.length)];
+  }
+  return pwd;
+}
+
+document.getElementById("gen").addEventListener("click", () => {
+  const len = parseInt(document.getElementById("len").value);
+  const pwd = generate(
+    len,
+    lower.checked,
+    upper.checked,
+    num.checked,
+    sym.checked
+  );
+  document.getElementById("pwd").value = pwd;
+});
+
+document.getElementById("copy").addEventListener("click", async () => {
+  const pwd = document.getElementById("pwd").value;
+  if (!pwd) return;
+  await navigator.clipboard.writeText(pwd);
+  alert("Password copiata!");
+});
+</script>
+
+</body>
+</html>
