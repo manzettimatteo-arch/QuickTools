@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF → Word – QuickTools</title>
+  <meta name="description" content="Converti PDF in Word direttamente dal browser. Nessuna registrazione, nessun upload.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+
+<header>
+  <h1>PDF → Word</h1>
+  <p>Conversione lato client, senza upload</p>
+</header>
+
+<div class="ad ad-top">SPAZIO PUBBLICITARIO 728x90</div>
+
+<main class="tool-container">
+
+  <div class="tool-box">
+
+    <input type="file" id="pdf" accept="application/pdf">
+
+    <button id="convert">Converti in Word</button>
+
+    <div class="result" id="status">Nessun file caricato.</div>
+
+  </div>
+
+</main>
+
+<div class="ad ad-bottom">SPAZIO PUBBLICITARIO 728x90</div>
+
+<footer>
+  <p>© <span id="year"></span> QuickTools</p>
+</footer>
+
+<script src="pdf.min.js"></script>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+document.getElementById("convert").addEventListener("click", async () => {
+  const file = document.getElementById("pdf").files[0];
+  const status = document.getElementById("status");
+
+  if (!file) {
+    status.textContent = "Carica un file PDF.";
+    return;
+  }
+
+  status.textContent = "Conversione in corso...";
+
+  const arrayBuffer = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+
+  let text = "";
+
+  for (let i = 1; i <= pdf.numPages; i++) {
+    const page = await pdf.getPage(i);
+    const content = await page.getTextContent();
+    text += content.items.map(item => item.str).join(" ") + "\n\n";
+  }
+
+  const blob = new Blob([text], { type: "application/msword" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = file.name.replace(".pdf", ".doc");
+  a.click();
+
+  status.textContent = "Conversione completata!";
+});
+</script>
+
+</body>
+</html>
