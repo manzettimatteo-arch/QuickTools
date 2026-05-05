@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calcolatrice Online – QuickTools</title>
+  <meta name="description" content="Calcolatrice online gratuita: somma, sottrai, moltiplica e dividi in modo rapido.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+
+<header>
+  <h1>Calcolatrice</h1>
+  <p>Calcoli rapidi e precisi</p>
+</header>
+
+<div class="ad ad-top">SPAZIO PUBBLICITARIO 728x90</div>
+
+<main class="tool-container">
+
+  <div class="tool-box">
+    <input type="number" id="a" placeholder="Numero 1">
+    <select id="op">
+      <option value="+">+</option>
+      <option value="-">−</option>
+      <option value="*">×</option>
+      <option value="/">÷</option>
+    </select>
+    <input type="number" id="b" placeholder="Numero 2">
+
+    <button id="calc">Calcola</button>
+
+    <div class="result" id="result">Risultato: —</div>
+  </div>
+
+</main>
+
+<div class="ad ad-bottom">SPAZIO PUBBLICITARIO 728x90</div>
+
+<footer>
+  <p>© <span id="year"></span> QuickTools</p>
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+document.getElementById("calc").addEventListener("click", () => {
+  const a = parseFloat(document.getElementById("a").value);
+  const b = parseFloat(document.getElementById("b").value);
+  const op = document.getElementById("op").value;
+  const out = document.getElementById("result");
+
+  if (isNaN(a) || isNaN(b)) {
+    out.textContent = "Risultato: inserisci due numeri validi.";
+    return;
+  }
+
+  let r;
+  if (op === "+") r = a + b;
+  if (op === "-") r = a - b;
+  if (op === "*") r = a * b;
+  if (op === "/") {
+    if (b === 0) {
+      out.textContent = "Risultato: divisione per zero non consentita.";
+      return;
+    }
+    r = a / b;
+  }
+
+  out.textContent = "Risultato: " + r;
+});
+</script>
+
+</body>
+</html>
