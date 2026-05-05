@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ToolBox Online - Strumenti Gratuiti</title>
+  <meta name="description" content="Raccolta di strumenti online gratuiti: calcolatrice, generatore di password, conteggio caratteri, convertitore di valuta e altro." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="top-bar">
+    <div class="logo">ToolBox Online</div>
+    <nav class="nav">
+      <a href="#calculator">Calcolatrice</a>
+      <a href="#password">Password</a>
+      <a href="#charcount">Conteggio caratteri</a>
+      <a href="#currency">Convertitore valuta</a>
+    </nav>
+  </header>
+
+  <!-- Banner pubblicitario principale -->
+  <section class="ad ad-top">
+    <!-- Sostituisci questo div con il codice del tuo network pubblicitario (es. AdSense) -->
+    <div class="ad-placeholder">Spazio pubblicitario 728x90</div>
+  </section>
+
+  <main class="container">
+    <section class="intro">
+      <h1>Strumenti online gratuiti</h1>
+      <p>
+        Una raccolta di piccoli tools utili per tutti i giorni. Salva il sito tra i preferiti e torna quando ti serve.
+      </p>
+    </section>
+
+    <!-- Colonna sinistra: tools -->
+    <section class="tools-grid">
+      <!-- Calcolatrice -->
+      <article class="tool-card" id="calculator">
+        <h2>Calcolatrice semplice</h2>
+        <p>Somma, sottrai, moltiplica e dividi in modo rapido.</p>
+        <div class="tool-body">
+          <input type="number" id="calc-a" placeholder="Numero 1" />
+          <select id="calc-op">
+            <option value="+">+</option>
+            <option value="-">−</option>
+            <option value="*">×</option>
+            <option value="/">÷</option>
+          </select>
+          <input type="number" id="calc-b" placeholder="Numero 2" />
+          <button id="calc-btn">Calcola</button>
+          <div class="result" id="calc-result">Risultato: —</div>
+        </div>
+      </article>
+
+      <!-- Generatore password -->
+      <article class="tool-card" id="password">
+        <h2>Generatore di password</h2>
+        <p>Crea password sicure e casuali.</p>
+        <div class="tool-body">
+          <label for="pwd-length">Lunghezza:</label>
+          <input type="number" id="pwd-length" min="6" max="64" value="12" />
+          <div class="checkboxes">
+            <label><input type="checkbox" id="pwd-lower" checked /> minuscole</label>
+            <label><input type="checkbox" id="pwd-upper" checked /> maiuscole</label>
+            <label><input type="checkbox" id="pwd-num" checked /> numeri</label>
+            <label><input type="checkbox" id="pwd-symbol" /> simboli</label>
+          </div>
+          <button id="pwd-btn">Genera password</button>
+          <div class="result result-row">
+            <input type="text" id="pwd-result" readonly />
+            <button id="pwd-copy">Copia</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Conteggio caratteri -->
+      <article class="tool-card" id="charcount">
+        <h2>Conteggio caratteri e parole</h2>
+        <p>Perfetto per social, email e testi brevi.</p>
+        <div class="tool-body">
+          <textarea id="text-input" rows="5" placeholder="Scrivi o incolla il tuo testo qui..."></textarea>
+          <div class="stats">
+            <span id="char-count">Caratteri: 0</span>
+            <span id="word-count">Parole: 0</span>
+            <span id="line-count">Righe: 0</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Convertitore valuta (semplice, con tassi fissi di esempio) -->
+      <article class="tool-card" id="currency">
+        <h2>Convertitore di valuta</h2>
+        <p>Conversione rapida EUR ⇄ USD (tasso dimostrativo).</p>
+        <div class="tool-body">
+          <input type="number" id="cur-amount" placeholder="Importo" />
+          <select id="cur-from">
+            <option value="EUR">EUR</option>
+            <option value="USD">USD</option>
+          </select>
+          <span class="arrow">→</span>
+          <select id="cur-to">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+          </select>
+          <button id="cur-btn">Converti</button>
+          <div class="result" id="cur-result">Risultato: —</div>
+          <small class="note">
+            Nota: tassi di cambio di esempio, non usare per operazioni finanziarie reali.
+          </small>
+        </div>
+      </article>
+    </section>
+
+    <!-- Colonna destra: ads + info -->
+    <aside class="sidebar">
+      <section class="ad ad-sidebar">
+        <div class="ad-placeholder">Spazio pubblicitario 300x250</div>
+      </section>
+
+      <section class="info-box">
+        <h3>Come monetizzare</h3>
+        <p>
+          Una volta approvato dal tuo network pubblicitario, sostituisci gli spazi “Spazio pubblicitario” con il codice ufficiale degli annunci.
+        </p>
+      </section>
+
+      <section class="info-box">
+        <h3>Open source su GitHub</h3>
+        <p>
+          Puoi pubblicare questo sito su GitHub Pages creando un repository pubblico e abilitando Pages dalle impostazioni.
+        </p>
+      </section>
+    </aside>
+  </main>
+
+  <!-- Footer con altro spazio adv -->
+  <footer class="footer">
+    <section class="ad ad-bottom">
+      <div class="ad-placeholder">Spazio pubblicitario 728x90</div>
+    </section>
+    <p>© <span id="year"></span> ToolBox Online · Creato con HTML, CSS e JavaScript</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
